@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Магазин ноутбуков{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .product-card { border: 1px solid #e9ecef; border-radius: 8px; background: #fff; padding: 15px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card_media, .detail_media { height: 200px; display: flex; align-items: center; justify-content: center; background: #f1f3f5; border-radius: 6px; overflow: hidden; margin-bottom: 12px; }
+        .product-card_media img, .detail_media img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .brand-badge { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; font-weight: 600; }
+        .price { font-size: 1.25rem; font-weight: 700; color: #0d6efd; margin: 8px 0; }
+        .empty-state { text-align: center; padding: 60px 20px; color: #6c757d; }
+        .empty-state i { font-size: 3.5rem; margin-bottom: 15px; display: block; }
+        .auth-wrap { max-width: 420px; margin: 40px auto; }
+        .auth-card, .filter-card, .summary-box, .profile-card { background: #fff; border: 1px solid #e9ecef; border-radius: 8px; padding: 24px; }
+        .spec-list { list-style: none; padding: 0; margin: 20px 0; }
+        .spec-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f3f5; }
+        .avatar-preview { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'laptop_list' %}"><i class="bi bi-laptop me-2"></i>LaptopShop</a>
+        <div class="d-flex align-items-center gap-3">
+            <a href="{% url 'cart_detail' %}" class="btn btn-outline-light btn-sm"><i class="bi bi-bag"></i> Корзина</a>
+            <a href="{% url 'favorite_list' %}" class="btn btn-outline-light btn-sm"><i class="bi bi-heart"></i> Избранное</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="text-light text-decoration-none small">{{ user.username }}</a>
+                <a href="{% url 'logout' %}" class="btn btn-sm btn-danger">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-sm btn-primary">Войти</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="container mb-5">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
