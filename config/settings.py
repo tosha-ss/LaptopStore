@@ -8,8 +8,8 @@ SECRET_KEY = 'django-insecure-^cgm2hci_3(ruwe4snu=8a8c37kowg#e(z6y!pt@plu7i9w+r9
 
 DEBUG = True
 
-# Мы разрешаем сайту открываться по его реальному адресу в интернете и локально
-ALLOWED_HOSTS = ['://onrender.com', 'localhost', '127.0.0.1']
+# Разрешаем открывать сайт по абсолютно любому адресу в интернете
+ALLOWED_HOSTS = ['*']
 
 
 # 3. Список всех подключенных приложений
